@@ -17,20 +17,20 @@ Titan-Scheduler 遵循 Kubernetes 声明式架构设计。以下是任务提交�
 ![workflow](./img/workflow.png)
 
 ## Key Features
-Custom Resource (CRD): 定义了 TrainingJob 资源，支持指定镜像、GPU 数量及优先级。
+- Custom Resource (CRD): 定义了 TrainingJob 资源，支持指定镜像、GPU 数量及优先级。
 
-Queueing Mechanism (排队机制): 实现了软调度逻辑。当集群运行任务数达到阈值（如 Max=2）时，新任务自动进入 Queued 状态，防止资源过载。
+- Queueing Mechanism (排队机制): 实现了软调度逻辑。当集群运行任务数达到阈值（如 Max=2）时，新任务自动进入 Queued 状态，防止资源过载。
 
-Auto-Healing (故障自愈): 基于 OwnerReference 实现级联管理。若训练 Pod 被意外删除，Controller 会自动检测并重建，确保任务完成。
+- Auto-Healing (故障自愈): 基于 OwnerReference 实现级联管理。若训练 Pod 被意外删除，Controller 会自动检测并重建，确保任务完成。
 
-User-Friendly API: 提供 Python FastAPI 接口，算法工程师无需通过 kubectl 即可提交和查询任务。
+- User-Friendly API: 提供 Python FastAPI 接口，算法工程师无需通过 kubectl 即可提交和查询任务。
 
-Status Observability: 扩展了 kubectl get 的 Printer Columns，直接在命令行查看任务的实时状态（Pending/Running/Queued/Succeeded）。
+- Status Observability: 扩展了 kubectl get 的 Printer Columns，直接在命令行查看任务的实时状态（Pending/Running/Queued/Succeeded）。
 
 ## Demo
 1. 任务排队与自动补位演示 下图展示了同时提交 3 个任务（系统最大并发为 2）时的调度情况：前两个任务运行，第三个任务排队，待资源释放后自动运行。
 ![log](./img/runninglog.png)
-![state](./img/state.png)
+
 2. API 接入演示
 
 ```
