@@ -1,0 +1,37 @@
+apiVersion: batch.rory109.com/v1
+kind: TrainingJob
+metadata:
+  labels:
+    app.kubernetes.io/name: titan-scheduler
+    app.kubernetes.io/managed-by: kustomize
+  name: trainingjob-job1
+spec:
+  image: "busybox"
+  gpuCount: 2
+  priority: 10
+
+---
+apiVersion: batch.rory109.com/v1
+kind: TrainingJob
+metadata:
+  labels:
+    app.kubernetes.io/name: titan-scheduler
+    app.kubernetes.io/managed-by: kustomize
+  name: trainingjob-job2
+spec:
+  image: "busybox"
+  gpuCount: 2
+  priority: 20
+
+---
+apiVersion: batch.rory109.com/v1
+kind: TrainingJob
+metadata:
+  labels:
+    app.kubernetes.io/name: titan-scheduler
+    app.kubernetes.io/managed-by: kustomize
+  name: trainingjob-job3
+spec:
+  image: "busybox"
+  gpuCount: 2
+  priority: 30
